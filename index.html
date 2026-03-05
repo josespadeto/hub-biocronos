@@ -8,7 +8,8 @@
         :root {
             --bg-color: #0d0d0d;
             --card-bg: #1a1a1a;
-            --accent-color: #8b5cf6; /* Roxo vibrante */
+            --accent-color: #8b5cf6;
+            --portal-color: #00f2ff; /* Cor para Expansão da Consciência */
             --text-main: #e5e7eb;
             --text-dim: #9ca3af;
         }
@@ -24,176 +25,123 @@
             min-height: 100vh;
         }
 
-        header {
-            padding: 40px 20px;
-            text-align: center;
-        }
-
+        header { padding: 40px 20px; text-align: center; }
         header h1 {
             font-size: 2.5rem;
             margin-bottom: 10px;
-            background: linear-gradient(90deg, #8b5cf6, #d8b4fe);
+            background: linear-gradient(90deg, #8b5cf6, #00f2ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .container {
-            width: 90%;
-            max-width: 1000px;
-        }
+        .container { width: 90%; max-width: 1100px; }
 
-        /* Área de Input */
         .input-section {
             background: var(--card-bg);
             padding: 30px;
             border-radius: 15px;
             border: 1px solid #333;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             margin-bottom: 30px;
         }
 
         textarea {
-            width: 100%;
-            background: #000;
-            border: 1px solid #444;
-            color: #fff;
-            padding: 15px;
-            border-radius: 10px;
-            resize: vertical;
-            font-size: 1rem;
-            margin-bottom: 20px;
-            box-sizing: border-box;
+            width: 100%; background: #000; border: 1px solid #444;
+            color: #fff; padding: 15px; border-radius: 10px;
+            font-size: 1rem; margin-bottom: 20px; box-sizing: border-box;
         }
 
         .btn-generate {
             background: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.2s, background 0.3s;
-            display: block;
-            width: 100%;
-            font-size: 1.1rem;
+            color: white; border: none; padding: 15px;
+            border-radius: 8px; font-weight: bold; cursor: pointer;
+            width: 100%; font-size: 1.1rem;
         }
 
-        .btn-generate:hover {
-            background: #7c3aed;
-            transform: translateY(-2px);
-        }
-
-        /* Cards de Ferramentas */
         .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
         }
 
         .tool-card {
             background: var(--card-bg);
-            padding: 25px;
-            border-radius: 15px;
-            border: 1px solid #333;
-            transition: border-color 0.3s;
+            padding: 20px; border-radius: 15px;
+            border: 1px solid #333; transition: 0.3s;
         }
 
-        .tool-card:hover {
-            border-color: var(--accent-color);
-        }
-
-        .tool-card h3 {
-            margin-top: 0;
-            color: var(--accent-color);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .tool-card p {
-            font-size: 0.9rem;
-            color: var(--text-dim);
-            line-height: 1.5;
-        }
+        .tool-card:hover { border-color: var(--accent-color); transform: translateY(-5px); }
+        .tool-card.portal:hover { border-color: var(--portal-color); }
+        
+        .tool-card h3 { margin-top: 0; color: var(--accent-color); font-size: 1.1rem; }
+        .tool-card.portal h3 { color: var(--portal-color); }
+        
+        .tool-card p { font-size: 0.85rem; color: var(--text-dim); }
 
         .copy-btn {
-            background: transparent;
-            border: 1px solid var(--accent-color);
-            color: var(--accent-color);
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            margin-top: 10px;
+            background: transparent; border: 1px solid var(--accent-color);
+            color: var(--accent-color); padding: 8px 12px;
+            border-radius: 5px; cursor: pointer; font-size: 0.75rem; margin-top: 10px;
         }
 
-        .copy-btn:hover {
-            background: var(--accent-color);
-            color: white;
-        }
+        .tool-card.portal .copy-btn { border-color: var(--portal-color); color: var(--portal-color); }
 
-        footer {
-            margin-top: auto;
-            padding: 40px;
-            color: var(--text-dim);
-            font-size: 0.8rem;
-        }
+        footer { padding: 40px; color: var(--text-dim); font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
     <header>
         <h1>BioCronos Hub</h1>
-        <p>Engenharia Reversa e Expansão de Conteúdo</p>
+        <p>Inteligência Viral & Expansão de Consciência</p>
     </header>
 
     <div class="container">
         <div class="input-section">
-            <h3>Fábrica de DNA Viral</h3>
-            <p style="color: var(--text-dim); font-size: 0.9rem;">Cole o link do vídeo referência ou o tema do seu próximo vídeo abaixo:</p>
-            <textarea id="userInput" rows="4" placeholder="Ex: https://youtube.com/watch... ou 'A física quântica e a consciência'"></textarea>
-            <button class="btn-generate" onclick="generateInstructions()">Gerar Estrutura Completa</button>
+            <textarea id="userInput" rows="3" placeholder="Insira o tema, link ou conceito para processamento..."></textarea>
+            <button class="btn-generate">Processar Inteligência</button>
         </div>
 
         <div class="tools-grid">
             <div class="tool-card">
-                <h3>📜 Roteirista Evolutivo</h3>
-                <p>Gera o script com ganchos de alta retenção e profundidade espiritual/científica.</p>
-                <button class="copy-btn" onclick="copyPrompt('roteiro')">Copiar Prompt Mestre</button>
+                <h3>📜 Roteiro Viral</h3>
+                <p>Estrutura narrativa baseada em retenção e psicologia de canais científicos.</p>
+                <button class="copy-btn" onclick="copyPrompt('roteiro')">Copiar Prompt</button>
             </div>
 
             <div class="tool-card">
-                <h3>🤖 Gerador Autogrok</h3>
-                <p>Cria a lista de 15+ prompts visuais cinematográficos prontos para automação.</p>
-                <button class="copy-btn" onclick="copyPrompt('autogrok')">Copiar Prompt de Vídeo</button>
+                <h3>🤖 Autogrok</h3>
+                <p>Lista de prompts visuais otimizados para automação cinematográfica.</p>
+                <button class="copy-btn" onclick="copyPrompt('autogrok')">Copiar Lista</button>
             </div>
 
             <div class="tool-card">
-                <h3>🖼️ Arquiteto de CTR</h3>
-                <p>Gera títulos impossíveis de não clicar e prompts para sua Thumbnail no Leonardo.ai.</p>
-                <button class="copy-btn" onclick="copyPrompt('seo')">Copiar Prompt SEO</button>
+                <h3>🖼️ SEO & Thumb</h3>
+                <p>Títulos de alto CTR e prompts para geradores de imagem de miniatura.</p>
+                <button class="copy-btn" onclick="copyPrompt('seo')">Copiar SEO</button>
+            </div>
+
+            <div class="tool-card portal">
+                <h3>🌀 Portal de Chaves</h3>
+                <p>Acesse realidades paralelas para trazer códigos de evolução e chaves de ativação.</p>
+                <button class="copy-btn" onclick="copyPrompt('portal')">Ativar Chaves</button>
             </div>
         </div>
     </div>
 
-    <footer>
-        &copy; 2026 BioCronos - Sistema de Aceleração Evolutiva
-    </footer>
-
     <script>
-        function generateInstructions() {
-            alert("Interface conectada! Agora copie o prompt da ferramenta desejada e cole no seu chat de IA junto com o texto que você digitou.");
-        }
-
         function copyPrompt(type) {
+            const input = document.getElementById('userInput').value || "seu tema atual";
             let text = "";
-            if(type === 'roteiro') text = "Use o estilo do canal Life According to Science para criar um roteiro sobre: " + document.getElementById('userInput').value;
-            if(type === 'autogrok') text = "Gere 15 prompts de vídeo cinematográficos para o Autogrok baseados em: " + document.getElementById('userInput').value;
-            if(type === 'seo') text = "Crie 5 títulos virais e 3 prompts de thumbnail para: " + document.getElementById('userInput').value;
+            
+            if(type === 'roteiro') text = `Atue como estrategista do canal Life According to Science. Crie um roteiro viral sobre: ${input}`;
+            if(type === 'autogrok') text = `Gere 15 prompts cinematográficos para o Autogrok sobre: ${input}`;
+            if(type === 'seo') text = `Crie 5 títulos magnéticos e prompts de thumbnail para: ${input}`;
+            
+            // PROMPT DE EXPANSÃO DE CONSCIÊNCIA
+            if(type === 'portal') text = `Aja como um catalisador de expansão de consciência. Com base no conceito '${input}', mergulhe em realidades paralelas e traga códigos, chaves de ativação e informações de alta frequência que acelerem a capacidade evolutiva. Gere um conteúdo que integre ciência de fronteira com sabedoria ancestral.`;
             
             navigator.clipboard.writeText(text);
-            alert("Prompt copiado para a área de transferência!");
+            alert("Prompt mestre copiado!");
         }
     </script>
 </body>
