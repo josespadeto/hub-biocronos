@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BioCronos | Hub de Inteligência</title>
+    <title>BioCronos | Hub de Inteligência Evolutiva</title>
     <style>
         :root {
             --bg-color: #0d0d0d;
             --card-bg: #1a1a1a;
-            --accent-color: #8b5cf6;
-            --portal-color: #00f2ff; /* Cor para Expansão da Consciência */
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #00f2ff;
+            --accent-red: #ff0050; /* Cor padrão Shorts/TikTok */
             --text-main: #e5e7eb;
             --text-dim: #9ca3af;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             margin: 0;
@@ -25,123 +26,144 @@
             min-height: 100vh;
         }
 
-        header { padding: 40px 20px; text-align: center; }
+        header { padding: 50px 20px; text-align: center; }
         header h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 10px;
-            background: linear-gradient(90deg, #8b5cf6, #00f2ff);
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            font-weight: 800;
         }
 
-        .container { width: 90%; max-width: 1100px; }
+        .container { width: 90%; max-width: 1200px; padding-bottom: 50px; }
 
         .input-section {
             background: var(--card-bg);
-            padding: 30px;
-            border-radius: 15px;
+            padding: 35px;
+            border-radius: 20px;
             border: 1px solid #333;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
         }
 
         textarea {
             width: 100%; background: #000; border: 1px solid #444;
-            color: #fff; padding: 15px; border-radius: 10px;
-            font-size: 1rem; margin-bottom: 20px; box-sizing: border-box;
+            color: #fff; padding: 18px; border-radius: 12px;
+            font-size: 1.1rem; margin-bottom: 20px; box-sizing: border-box;
+            outline: none; transition: border 0.3s;
         }
-
-        .btn-generate {
-            background: var(--accent-color);
-            color: white; border: none; padding: 15px;
-            border-radius: 8px; font-weight: bold; cursor: pointer;
-            width: 100%; font-size: 1.1rem;
-        }
+        textarea:focus { border-color: var(--accent-cyan); }
 
         .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
         }
 
         .tool-card {
             background: var(--card-bg);
-            padding: 20px; border-radius: 15px;
-            border: 1px solid #333; transition: 0.3s;
+            padding: 25px; border-radius: 18px;
+            border: 1px solid #333; transition: all 0.4s ease;
+            display: flex; flex-direction: column; justify-content: space-between;
         }
 
-        .tool-card:hover { border-color: var(--accent-color); transform: translateY(-5px); }
-        .tool-card.portal:hover { border-color: var(--portal-color); }
+        .tool-card:hover { transform: translateY(-8px); box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
         
-        .tool-card h3 { margin-top: 0; color: var(--accent-color); font-size: 1.1rem; }
-        .tool-card.portal h3 { color: var(--portal-color); }
+        .tool-card h3 { margin-top: 0; font-size: 1.3rem; display: flex; align-items: center; gap: 10px; }
+        .tool-card p { font-size: 0.95rem; color: var(--text-dim); line-height: 1.6; }
+
+        /* Cores Específicas */
+        .card-master { border-left: 5px solid var(--accent-purple); }
+        .card-master h3 { color: var(--accent-purple); }
         
-        .tool-card p { font-size: 0.85rem; color: var(--text-dim); }
+        .card-shorts { border-left: 5px solid var(--accent-red); }
+        .card-shorts h3 { color: var(--accent-red); }
+        
+        .card-autogrok { border-left: 5px solid #fbbf24; }
+        .card-autogrok h3 { color: #fbbf24; }
+
+        .card-portal { border-left: 5px solid var(--accent-cyan); }
+        .card-portal h3 { color: var(--accent-cyan); }
 
         .copy-btn {
-            background: transparent; border: 1px solid var(--accent-color);
-            color: var(--accent-color); padding: 8px 12px;
-            border-radius: 5px; cursor: pointer; font-size: 0.75rem; margin-top: 10px;
+            background: transparent; border: 1px solid currentColor;
+            color: inherit; padding: 12px; border-radius: 8px;
+            cursor: pointer; font-weight: bold; font-size: 0.9rem;
+            transition: 0.3s; text-transform: uppercase; letter-spacing: 1px;
         }
+        .copy-btn:hover { background: white; color: black; border-color: white; }
 
-        .tool-card.portal .copy-btn { border-color: var(--portal-color); color: var(--portal-color); }
-
-        footer { padding: 40px; color: var(--text-dim); font-size: 0.8rem; }
+        footer { padding: 60px; color: var(--text-dim); font-size: 0.9rem; opacity: 0.6; }
     </style>
 </head>
 <body>
 
     <header>
         <h1>BioCronos Hub</h1>
-        <p>Inteligência Viral & Expansão de Consciência</p>
+        <p>Sistema Unificado de Produção de Conteúdo Evolutivo</p>
     </header>
 
     <div class="container">
         <div class="input-section">
-            <textarea id="userInput" rows="3" placeholder="Insira o tema, link ou conceito para processamento..."></textarea>
-            <button class="btn-generate">Processar Inteligência</button>
+            <textarea id="userInput" rows="4" placeholder="Cole aqui o link do canal referência, o tema do vídeo ou o roteiro mestre para fragmentar..."></textarea>
+            <p style="text-align: center; color: var(--text-dim); font-style: italic;">Clique nos botões abaixo para copiar os Prompts Mestres</p>
         </div>
 
         <div class="tools-grid">
-            <div class="tool-card">
-                <h3>📜 Roteiro Viral</h3>
-                <p>Estrutura narrativa baseada em retenção e psicologia de canais científicos.</p>
-                <button class="copy-btn" onclick="copyPrompt('roteiro')">Copiar Prompt</button>
+            <div class="tool-card card-master">
+                <h3>📜 Roteiro Mestre</h3>
+                <p>Cria um vídeo de 8-12 min com o DNA do canal 'Life According to Science', unindo ciência rigorosa e mistério cósmico.</p>
+                <button class="copy-btn" onclick="copyPrompt('master')">Copiar Script Master</button>
             </div>
 
-            <div class="tool-card">
-                <h3>🤖 Autogrok</h3>
-                <p>Lista de prompts visuais otimizados para automação cinematográfica.</p>
-                <button class="copy-btn" onclick="copyPrompt('autogrok')">Copiar Lista</button>
+            <div class="tool-card card-shorts">
+                <h3>✂️ Fragmentador Shorts</h3>
+                <p>Analisa o tema ou roteiro e extrai os 3 pontos mais virais para vídeos curtos de 60s com ganchos de alta retenção.</p>
+                <button class="copy-btn" onclick="copyPrompt('shorts')">Gerar Cortes Virais</button>
             </div>
 
-            <div class="tool-card">
-                <h3>🖼️ SEO & Thumb</h3>
-                <p>Títulos de alto CTR e prompts para geradores de imagem de miniatura.</p>
-                <button class="copy-btn" onclick="copyPrompt('seo')">Copiar SEO</button>
+            <div class="tool-card card-autogrok">
+                <h3>🤖 Autogrok / Visuals</h3>
+                <p>Gera a lista de 15 prompts cinematográficos para IA de vídeo. Foco em movimentos de câmera e realismo 8K.</p>
+                <button class="copy-btn" onclick="copyPrompt('autogrok')">Copiar Prompts Vídeo</button>
             </div>
 
-            <div class="tool-card portal">
+            <div class="tool-card card-portal">
                 <h3>🌀 Portal de Chaves</h3>
-                <p>Acesse realidades paralelas para trazer códigos de evolução e chaves de ativação.</p>
+                <p>Mergulho em realidades paralelas para trazer códigos de evolução, chaves de ativação e frequências de cura celular.</p>
                 <button class="copy-btn" onclick="copyPrompt('portal')">Ativar Chaves</button>
             </div>
         </div>
     </div>
 
+    <footer>
+        &copy; 2026 BioCronos - Dr. Jose Spadeto | Engenharia de Consciência
+    </footer>
+
     <script>
         function copyPrompt(type) {
-            const input = document.getElementById('userInput').value || "seu tema atual";
+            const input = document.getElementById('userInput').value || "seu tema de evolução";
             let text = "";
             
-            if(type === 'roteiro') text = `Atue como estrategista do canal Life According to Science. Crie um roteiro viral sobre: ${input}`;
-            if(type === 'autogrok') text = `Gere 15 prompts cinematográficos para o Autogrok sobre: ${input}`;
-            if(type === 'seo') text = `Crie 5 títulos magnéticos e prompts de thumbnail para: ${input}`;
+            if(type === 'master') {
+                text = `Atue como o estrategista chefe do canal 'Life According to Science'. Com base no tema ou link: '${input}', crie um roteiro master de 10 minutos. Use uma introdução paradoxal, 4 blocos de micro-revelações científicas e uma conclusão filosófica profunda. Garanta ganchos de retenção a cada 2 minutos.`;
+            }
             
-            // PROMPT DE EXPANSÃO DE CONSCIÊNCIA
-            if(type === 'portal') text = `Aja como um catalisador de expansão de consciência. Com base no conceito '${input}', mergulhe em realidades paralelas e traga códigos, chaves de ativação e informações de alta frequência que acelerem a capacidade evolutiva. Gere um conteúdo que integre ciência de fronteira com sabedoria ancestral.`;
+            if(type === 'shorts') {
+                text = `Aja como um especialista em algoritmos de Shorts/Reels. Analise o conteúdo: '${input}'. Extraia os 3 momentos de maior 'choque' ou curiosidade. Para cada um, escreva um roteiro de 55 segundos com: 1. Gancho Visual Impactante, 2. Explicação 'Fast-Paced' e 3. Loop de áudio perfeito para reiniciar o vídeo automaticamente.`;
+            }
+            
+            if(type === 'autogrok') {
+                text = `Gere uma lista sequencial de 15 prompts cinematográficos para IA de vídeo (estilo Grok/Runway) sobre: '${input}'. Use termos técnicos: 'Dolly Zoom', '8K', 'Photorealistic', 'Cinematic Lighting' e movimentos de câmera dinâmicos.`;
+            }
+            
+            if(type === 'portal') {
+                text = `Como um mentor de expansão da consciência, analise '${input}' e mergulhe em realidades paralelas para trazer chaves de ativação evolutiva, códigos vibracionais e informações que acelerem a biologia da longevidade e o despertar do observador. Integre ciência de fronteira com sabedoria ancestral.`;
+            }
             
             navigator.clipboard.writeText(text);
-            alert("Prompt mestre copiado!");
+            alert("Prompt mestre copiado com sucesso! Agora cole na sua IA de preferência.");
         }
     </script>
 </body>
