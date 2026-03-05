@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioCronos | Hub de Inteligência</title>
+    <style>
+        :root {
+            --bg-color: #0d0d0d;
+            --card-bg: #1a1a1a;
+            --accent-color: #8b5cf6; /* Roxo vibrante */
+            --text-main: #e5e7eb;
+            --text-dim: #9ca3af;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #8b5cf6, #d8b4fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+        }
+
+        /* Área de Input */
+        .input-section {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 30px;
+        }
+
+        textarea {
+            width: 100%;
+            background: #000;
+            border: 1px solid #444;
+            color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            resize: vertical;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .btn-generate {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.3s;
+            display: block;
+            width: 100%;
+            font-size: 1.1rem;
+        }
+
+        .btn-generate:hover {
+            background: #7c3aed;
+            transform: translateY(-2px);
+        }
+
+        /* Cards de Ferramentas */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .tool-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            transition: border-color 0.3s;
+        }
+
+        .tool-card:hover {
+            border-color: var(--accent-color);
+        }
+
+        .tool-card h3 {
+            margin-top: 0;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tool-card p {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            line-height: 1.5;
+        }
+
+        .copy-btn {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-top: 10px;
+        }
+
+        .copy-btn:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 40px;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>BioCronos Hub</h1>
+        <p>Engenharia Reversa e Expansão de Conteúdo</p>
+    </header>
+
+    <div class="container">
+        <div class="input-section">
+            <h3>Fábrica de DNA Viral</h3>
+            <p style="color: var(--text-dim); font-size: 0.9rem;">Cole o link do vídeo referência ou o tema do seu próximo vídeo abaixo:</p>
+            <textarea id="userInput" rows="4" placeholder="Ex: https://youtube.com/watch... ou 'A física quântica e a consciência'"></textarea>
+            <button class="btn-generate" onclick="generateInstructions()">Gerar Estrutura Completa</button>
+        </div>
+
+        <div class="tools-grid">
+            <div class="tool-card">
+                <h3>📜 Roteirista Evolutivo</h3>
+                <p>Gera o script com ganchos de alta retenção e profundidade espiritual/científica.</p>
+                <button class="copy-btn" onclick="copyPrompt('roteiro')">Copiar Prompt Mestre</button>
+            </div>
+
+            <div class="tool-card">
+                <h3>🤖 Gerador Autogrok</h3>
+                <p>Cria a lista de 15+ prompts visuais cinematográficos prontos para automação.</p>
+                <button class="copy-btn" onclick="copyPrompt('autogrok')">Copiar Prompt de Vídeo</button>
+            </div>
+
+            <div class="tool-card">
+                <h3>🖼️ Arquiteto de CTR</h3>
+                <p>Gera títulos impossíveis de não clicar e prompts para sua Thumbnail no Leonardo.ai.</p>
+                <button class="copy-btn" onclick="copyPrompt('seo')">Copiar Prompt SEO</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 BioCronos - Sistema de Aceleração Evolutiva
+    </footer>
+
+    <script>
+        function generateInstructions() {
+            alert("Interface conectada! Agora copie o prompt da ferramenta desejada e cole no seu chat de IA junto com o texto que você digitou.");
+        }
+
+        function copyPrompt(type) {
+            let text = "";
+            if(type === 'roteiro') text = "Use o estilo do canal Life According to Science para criar um roteiro sobre: " + document.getElementById('userInput').value;
+            if(type === 'autogrok') text = "Gere 15 prompts de vídeo cinematográficos para o Autogrok baseados em: " + document.getElementById('userInput').value;
+            if(type === 'seo') text = "Crie 5 títulos virais e 3 prompts de thumbnail para: " + document.getElementById('userInput').value;
+            
+            navigator.clipboard.writeText(text);
+            alert("Prompt copiado para a área de transferência!");
+        }
+    </script>
+</body>
+</html>
