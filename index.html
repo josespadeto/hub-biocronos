@@ -3,161 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BioCronos | Hub de Inteligência Evolutiva</title>
+    <title>BioCronos | Engenharia de Consciência</title>
     <style>
         :root {
-            --bg-color: #0d0d0d;
-            --card-bg: #1a1a1a;
-            --accent-purple: #8b5cf6;
-            --accent-cyan: #00f2ff;
-            --accent-red: #ff0050; 
-            --accent-gold: #fbbf24;
-            --text-main: #e5e7eb;
-            --text-dim: #9ca3af;
+            --bg-main: #0a0a0a;
+            --card-bg: #141414;
+            --accent-primary: #a855f7; /* Violeta Ativação */
+            --accent-secondary: #22d3ee; /* Ciano Consciência */
+            --accent-gold: #f59e0b; /* Ouro Evolução */
+            --accent-viral: #ef4444; /* Vermelho Shorts */
+            --text-high: #ffffff;
+            --text-low: #888888;
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-high);
             margin: 0;
-            display: flex; flex-direction: column; align-items: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             min-height: 100vh;
         }
 
-        header { padding: 50px 20px; text-align: center; }
-        header h1 {
-            font-size: 3rem; margin-bottom: 10px;
-            background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            font-weight: 800;
+        header {
+            padding: 60px 20px 40px;
+            text-align: center;
         }
 
-        .container { width: 90%; max-width: 1200px; padding-bottom: 50px; }
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+            letter-spacing: -2px;
+        }
 
-        .input-section {
-            background: var(--card-bg); padding: 35px; border-radius: 20px;
-            border: 1px solid #333; margin-bottom: 40px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+        header p {
+            color: var(--text-low);
+            font-size: 0.9rem;
+            margin-top: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* Área de Comando Central */
+        .input-box {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid #222;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
 
         textarea {
-            width: 100%; background: #000; border: 1px solid #444;
-            color: #fff; padding: 18px; border-radius: 12px;
-            font-size: 1.1rem; margin-bottom: 20px; box-sizing: border-box;
-            outline: none; transition: border 0.3s;
+            width: 100%;
+            max-width: 500px;
+            background: #000;
+            border: 1px solid #333;
+            color: #fff;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            outline: none;
+            transition: 0.3s;
+            text-align: center;
+            resize: none;
         }
-        textarea:focus { border-color: var(--accent-cyan); }
 
+        textarea:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
+        }
+
+        /* Grade de Ferramentas */
         .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
         }
 
-        .tool-card {
-            background: var(--card-bg); padding: 25px; border-radius: 18px;
-            border: 1px solid #333; transition: all 0.4s ease;
-            display: flex; flex-direction: column; justify-content: space-between;
+        .card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 18px;
+            border: 1px solid #222;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .tool-card:hover { transform: translateY(-8px); box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
-        .tool-card h3 { margin-top: 0; font-size: 1.3rem; display: flex; align-items: center; gap: 10px; }
-        .tool-card p { font-size: 0.95rem; color: var(--text-dim); line-height: 1.6; }
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #444;
+        }
 
-        .card-master { border-left: 5px solid var(--accent-purple); }
-        .card-master h3 { color: var(--accent-purple); }
-        
-        .card-shorts { border-left: 5px solid var(--accent-red); }
-        .card-shorts h3 { color: var(--accent-red); }
-        
-        .card-autogrok { border-left: 5px solid var(--accent-gold); }
-        .card-autogrok h3 { color: var(--accent-gold); }
+        .card h3 {
+            margin: 0 0 10px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-        /* NOVA COR PARA THUMBNAIL */
-        .card-thumb { border-left: 5px solid #ffaa00; }
-        .card-thumb h3 { color: #ffaa00; }
+        .card p {
+            font-size: 0.85rem;
+            color: var(--text-low);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
 
-        .card-portal { border-left: 5px solid var(--accent-cyan); }
-        .card-portal h3 { color: var(--accent-cyan); }
-
+        /* Estilos de Botão */
         .copy-btn {
-            background: transparent; border: 1px solid currentColor;
-            color: inherit; padding: 12px; border-radius: 8px;
-            cursor: pointer; font-weight: bold; font-size: 0.9rem;
-            transition: 0.3s; text-transform: uppercase; letter-spacing: 1px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid currentColor;
+            color: inherit;
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 800;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
         }
-        .copy-btn:hover { background: white; color: black; border-color: white; }
 
-        footer { padding: 60px; color: var(--text-dim); font-size: 0.9rem; opacity: 0.6; }
+        .copy-btn:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        /* Cores dos Cards */
+        .c-master { border-bottom: 4px solid var(--accent-primary); color: var(--accent-primary); }
+        .c-shorts { border-bottom: 4px solid var(--accent-viral); color: var(--accent-viral); }
+        .c-visual { border-bottom: 4px solid var(--accent-gold); color: var(--accent-gold); }
+        .c-portal { border-bottom: 4px solid var(--accent-secondary); color: var(--accent-secondary); }
+
+        footer {
+            padding: 80px 20px 40px;
+            text-align: center;
+            color: var(--text-low);
+            font-size: 0.8rem;
+            opacity: 0.5;
+        }
     </style>
 </head>
 <body>
 
     <header>
         <h1>BioCronos Hub</h1>
-        <p>Sistema Unificado de Produção de Conteúdo Evolutivo</p>
+        <p>Unified Production System</p>
     </header>
 
     <div class="container">
-        <div class="input-section">
-            <textarea id="userInput" rows="4" placeholder="Cole aqui o link do canal referência, o tema do vídeo ou o roteiro mestre para fragmentar..."></textarea>
-            <p style="text-align: center; color: var(--text-dim); font-style: italic;">Clique nos botões abaixo para copiar os Prompts Mestres</p>
+        <div class="input-box">
+            <textarea id="mainInput" rows="2" placeholder="Tema, Link ou Conceito..."></textarea>
         </div>
 
         <div class="tools-grid">
-            <div class="tool-card card-master">
+            
+            <div class="card c-master">
                 <h3>📜 Roteiro Mestre</h3>
-                <p>Cria um vídeo de 8-12 min com o DNA do canal 'Life According to Science', unindo ciência rigorosa e mistério cósmico.</p>
-                <button class="copy-btn" onclick="copyPrompt('master')">Copiar Script Master</button>
+                <p>Gera script de 10 min com 3 níveis: Ciência, Filosofia e Ativação. Inclui direção de áudio e pausas.</p>
+                <button class="copy-btn" onclick="copy('master')">Copiar Script</button>
             </div>
 
-            <div class="tool-card card-shorts">
-                <h3>✂️ Fragmentador Shorts</h3>
-                <p>Analisa o tema ou roteiro e extrai os 3 pontos mais virais para vídeos curtos de 60s com ganchos de alta retenção.</p>
-                <button class="copy-btn" onclick="copyPrompt('shorts')">Gerar Cortes Virais</button>
+            <div class="card c-shorts">
+                <h3>✂️ Loop de Shorts</h3>
+                <p>Fragmenta o tema em 3 vídeos curtos com técnica de loop infinito para máxima retenção.</p>
+                <button class="copy-btn" onclick="copy('shorts')">Gerar Shorts</button>
             </div>
 
-            <div class="tool-card card-autogrok">
-                <h3>🤖 Autogrok / Visuals</h3>
-                <p>Gera a lista de 15 prompts cinematográficos para IA de vídeo. Foco em movimentos de câmera e realismo 8K.</p>
-                <button class="copy-btn" onclick="copyPrompt('autogrok')">Copiar Prompts Vídeo</button>
+            <div class="card c-visual">
+                <h3>🖼️ Direção de Arte</h3>
+                <p>Prompts para Thumb de alto CTR e lista para Autogrok (Estética Ultravioleta e Ouro).</p>
+                <button class="copy-btn" onclick="copy('visual')">Copiar Prompts</button>
             </div>
 
-            <div class="tool-card card-thumb">
-                <h3>🖼️ Arquiteto de Thumb</h3>
-                <p>Gera prompts de imagem de altíssima qualidade (Midjourney/Leonardo) para miniaturas cinematográficas de alto CTR.</p>
-                <button class="copy-btn" onclick="copyPrompt('thumb')">Gerar Prompt Thumb</button>
-            </div>
-
-            <div class="tool-card card-portal">
+            <div class="card c-portal">
                 <h3>🌀 Portal de Chaves</h3>
-                <p>Mergulho em realidades paralelas para trazer códigos de evolução, chaves de ativação e frequências de cura celular.</p>
-                <button class="copy-btn" onclick="copyPrompt('portal')">Ativar Chaves</button>
+                <p>Mergulho em realidades paralelas para extrair códigos evolutivos e sabedoria acelerada.</p>
+                <button class="copy-btn" onclick="copy('portal')">Ativar Chaves</button>
             </div>
+
         </div>
     </div>
 
     <footer>
-        &copy; 2026 BioCronos - Dr. Jose Spadeto | Engenharia de Consciência
+        &copy; 2026 BioCronos Hub | Dr. Jose Spadeto
     </footer>
 
     <script>
-        function copyPrompt(type) {
-            const input = document.getElementById('userInput').value || "seu tema de evolução";
-            let text = "";
-            
-            if(type === 'master') text = `Atue como o estrategista chefe do canal 'Life According to Science'. Com base no tema ou link: '${input}', crie um roteiro master de 10 minutos. Use uma introdução paradoxal, 4 blocos de micro-revelações científicas e uma conclusão filosófica profunda. Garanta ganchos de retenção a cada 2 minutos.`;
-            if(type === 'shorts') text = `Aja como um especialista em algoritmos de Shorts/Reels. Analise o conteúdo: '${input}'. Extraia os 3 momentos de maior 'choque' ou curiosidade. Para cada um, escreva um roteiro de 55 segundos com: 1. Gancho Visual Impactante, 2. Explicação 'Fast-Paced' e 3. Loop de áudio perfeito para reiniciar o vídeo automaticamente.`;
-            if(type === 'autogrok') text = `Gere uma lista sequencial de 15 prompts cinematográficos para IA de vídeo (estilo Grok/Runway) sobre: '${input}'. Use termos técnicos: 'Dolly Zoom', '8K', 'Photorealistic', 'Cinematic Lighting' e movimentos de câmera dinâmicos.`;
-            
-            // NOVO PROMPT DE THUMBNAIL
-            if(type === 'thumb') text = `Aja como um designer de Thumbnails para canais Dark de Elite. Com base no tema '${input}', gere 3 prompts de imagem para Midjourney ou Leonardo.ai. Estilo: Cinema Sci-Fi Realista, iluminação dramática Rim Light, alta profundidade de campo. Use cores contrastantes (ex: violeta e ouro). O prompt deve descrever uma única imagem central e impactante para garantir CTR alto.`;
-            
-            if(type === 'portal') text = `Como um mentor de expansão da consciência, analise '${input}' e mergulhe em realidades paralelas para trazer chaves de ativação evolutiva, códigos vibracionais e informações que acelerem a biologia da longevidade e o despertar do observador. Integre ciência de fronteira com sabedoria ancestral.`;
-            
-            navigator.clipboard.writeText(text);
-            alert("Prompt mestre copiado com sucesso! Agora cole na sua IA de preferência.");
+        function copy(type) {
+            const val = document.getElementById('mainInput').value || "seu tema atual";
+            let prompt = "";
+
+            if(type === 'master') {
+                prompt = `Atue como Diretor Criativo do canal 'Life According to Science'. Tema: '${val}'. Gere um roteiro master (10 min) integrando: Ciência Factual, Implicação Filosófica e Ativação Consciencial. Inclua marcações de trilha sonora (432Hz/963Hz) e descrições de imagens cinematográficas 8K.`;
+            }
+            if(type === 'shorts') {
+                prompt = `Crie 3 roteiros de 58 segundos para Shorts baseados em '${val}'. Utilize a técnica de 'Loop Infinito': a frase final deve conectar gramaticalmente com a primeira. Foco em curiosidade e ritmo acelerado.`;
+            }
+            if(type === 'visual') {
+                prompt = `Gere 1 prompt de Thumbnail (Midjourney) e 10 prompts de vídeo (Autogrok) para '${val}'. Estética: Realismo Sci-Fi, paleta 'Ultravioleta e Ouro', iluminação Rim Light e movimentos de câmera Dolly Zoom.`;
+            }
+            if(type === 'portal') {
+                prompt = `Como um mentor multidimensional, analise '${val}' e traga códigos de ativação evolutiva e chaves de sabedoria que acelerem a expansão do observador consciente.`;
+            }
+
+            navigator.clipboard.writeText(prompt);
+            alert("Comando copiado! Cole na sua IA de preferência.");
         }
     </script>
 </body>
