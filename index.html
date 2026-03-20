@@ -6,143 +6,144 @@
     <title>BioCronos Hub | Engenharia de Consciência</title>
     <style>
         :root {
-            --bg-deep: #000000;
-            --card-bg: #111111;
-            --accent-violet: #a855f7;
-            --accent-cyan: #22d3ee;
-            --accent-gold: #f59e0b;
-            --text-main: #ffffff;
+            --bg-color: #0d0d0d;
+            --card-bg: #1a1a1a;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #00f2ff;
+            --accent-gold: #fbbf24;
+            --text-main: #e5e7eb;
             --text-dim: #9ca3af;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-deep);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
             color: var(--text-main);
-            margin: 0; display: flex; flex-direction: column; align-items: center;
+            margin: 0;
+            display: flex; flex-direction: column; align-items: center;
             min-height: 100vh;
         }
 
-        header { padding: 50px 20px 20px; text-align: center; }
+        header { padding: 50px 20px; text-align: center; }
         header h1 {
-            font-size: 2.5rem; margin: 0;
-            background: linear-gradient(135deg, var(--accent-violet), var(--accent-cyan));
+            font-size: 3rem; margin-bottom: 10px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            font-weight: 900; letter-spacing: -1px;
+            font-weight: 800;
         }
 
-        .container { width: 90%; max-width: 750px; display: flex; flex-direction: column; gap: 20px; }
+        .container { width: 90%; max-width: 1100px; padding-bottom: 50px; }
 
-        .input-box {
-            background: var(--card-bg); padding: 25px; border-radius: 20px;
-            border: 1px solid #1a1a1a; text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        .input-section {
+            background: var(--card-bg); padding: 35px; border-radius: 20px;
+            border: 1px solid #333; margin-bottom: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
         }
 
         textarea {
-            width: 100%; max-width: 500px; background: #080808; border: 1px solid #222;
-            color: #fff; padding: 15px; border-radius: 12px;
-            font-size: 1.1rem; outline: none; transition: 0.3s;
-            text-align: center; resize: none;
+            width: 100%; background: #000; border: 1px solid #444;
+            color: #fff; padding: 18px; border-radius: 12px;
+            font-size: 1.1rem; margin-bottom: 20px; box-sizing: border-box;
+            outline: none; transition: border 0.3s;
         }
         textarea:focus { border-color: var(--accent-cyan); }
 
-        .workflow { display: flex; flex-direction: column; gap: 15px; padding-bottom: 50px; }
-
-        .step-card {
-            background: var(--card-bg); display: flex; align-items: center;
-            padding: 22px; border-radius: 16px; border: 1px solid #1a1a1a;
-            transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
         }
+
+        .tool-card {
+            background: var(--card-bg); padding: 25px; border-radius: 18px;
+            border: 1px solid #333; transition: all 0.4s ease;
+            display: flex; flex-direction: column; justify-content: space-between;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        }
+
+        .tool-card:hover { transform: translateY(-8px); border-color: var(--accent-purple); }
+        .tool-card h3 { margin-top: 0; font-size: 1.3rem; display: flex; align-items: center; gap: 10px; }
+        .tool-card p { font-size: 0.95rem; color: var(--text-dim); line-height: 1.6; }
+
+        .card-1 { border-left: 5px solid var(--accent-cyan); }
+        .card-1 h3 { color: var(--accent-cyan); }
         
-        .step-card:hover { border-color: var(--accent-violet); background: #151515; }
+        .card-2 { border-left: 5px solid var(--accent-purple); }
+        .card-2 h3 { color: var(--accent-purple); }
+        
+        .card-3 { border-left: 5px solid var(--accent-gold); }
+        .card-3 h3 { color: var(--accent-gold); }
 
-        .step-num {
-            font-size: 1.6rem; font-weight: 900;
-            min-width: 45px; height: 45px;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            margin-right: 25px; color: var(--accent-cyan);
-            border: 2px solid var(--accent-cyan);
-        }
-
-        .step-info { flex-grow: 1; }
-        .step-info h3 { margin: 0 0 6px 0; font-size: 1.2rem; color: #fff; }
-        .step-info p { margin: 0; font-size: 0.9rem; color: var(--text-dim); line-height: 1.4; max-width: 400px; }
+        .card-4 { border-left: 5px solid #ff4d4d; }
+        .card-4 h3 { color: #ff4d4d; }
 
         .copy-btn {
-            background: rgba(255,255,255,0.05); border: 1px solid #333;
-            color: #fff; padding: 12px 25px; border-radius: 10px;
-            cursor: pointer; font-weight: 800; font-size: 0.75rem;
-            text-transform: uppercase; transition: 0.3s;
+            background: transparent; border: 1px solid currentColor;
+            color: inherit; padding: 12px; border-radius: 8px;
+            cursor: pointer; font-weight: bold; font-size: 0.9rem;
+            transition: 0.3s; text-transform: uppercase; letter-spacing: 1px;
+            margin-top: 15px;
         }
-        .copy-btn:hover { background: #fff; color: #000; border-color: #fff; }
+        .copy-btn:hover { background: white; color: black; border-color: white; }
 
-        footer { padding: 40px; text-align: center; color: var(--text-dim); font-size: 0.8rem; opacity: 0.2; }
+        footer { padding: 60px; color: var(--text-dim); font-size: 0.9rem; opacity: 0.6; }
     </style>
 </head>
 <body>
 
     <header>
         <h1>BioCronos Hub</h1>
+        <p>Sistema Unificado de Produção de Conteúdo Evolutivo</p>
     </header>
 
     <div class="container">
-        <div class="input-box">
-            <textarea id="mainInput" rows="2" placeholder="Tema, Link ou Conceito..."></textarea>
+        <div class="input-section">
+            <textarea id="userInput" rows="3" placeholder="Insira aqui o tema, link ou conceito para processamento..."></textarea>
         </div>
 
-        <div class="workflow">
-            <div class="step-card">
-                <div class="step-num">1</div>
-                <div class="step-info">
-                    <h3>Ativação de DNA</h3>
-                    <p>Mergulha em realidades paralelas para extrair chaves de sabedoria e códigos evolutivos multidimensionais.</p>
-                </div>
-                <button class="copy-btn" onclick="copyPrompt('portal')">Copiar</button>
+        <div class="tools-grid">
+            <div class="tool-card card-1">
+                <h3>🌀 1. Ativação de DNA</h3>
+                <p>Mergulha em realidades paralelas para extrair chaves de sabedoria e códigos evolutivos multidimensionais.</p>
+                <button class="copy-btn" onclick="copyPrompt('portal')">Ativar Chaves</button>
             </div>
 
-            <div class="step-card">
-                <div class="step-num">2</div>
-                <div class="step-info">
-                    <h3>Roteirização Mestre</h3>
-                    <p>Gera o script completo (10 min) integrando Fatos Científicos, Filosofia e Ativação de Consciência.</p>
-                </div>
-                <button class="copy-btn" onclick="copyPrompt('master')">Copiar</button>
+            <div class="tool-card card-2">
+                <h3>📜 2. Roteiro Mestre</h3>
+                <p>Gera o script completo (10 min) integrando Fatos Científicos, Filosofia e Ativação de Consciência.</p>
+                <button class="copy-btn" onclick="copyPrompt('master')">Copiar Script</button>
             </div>
 
-            <div class="step-card">
-                <div class="step-num">3</div>
-                <div class="step-info">
-                    <h3>Direção de Arte</h3>
-                    <p>Cria prompts para Miniaturas (Thumbnails) de alto impacto e lista de clipes cinematográficos 8K.</p>
-                </div>
-                <button class="copy-btn" onclick="copyPrompt('visual')">Copiar</button>
+            <div class="tool-card card-3">
+                <h3>🖼️ 3. Direção de Arte</h3>
+                <p>Cria prompts para Miniaturas (Thumbnails) de alto impacto e lista de clipes cinematográficos 8K.</p>
+                <button class="copy-btn" onclick="copyPrompt('visual')">Gerar Visuais</button>
             </div>
 
-            <div class="step-card">
-                <div class="step-num">4</div>
-                <div class="step-info">
-                    <h3>Engenharia Visual</h3>
-                    <p>Prompts técnicos para IAs de vídeo (Sora/Runway) com foco em movimentos de câmera e realismo extremo.</p>
-                </div>
-                <button class="copy-btn" onclick="copyPrompt('autogrok')">Copiar</button>
+            <div class="tool-card card-4">
+                <h3>🤖 4. Engenharia de Vídeo</h3>
+                <p>Prompts técnicos para IAs de vídeo (Sora/Runway) com foco em movimentos de câmera e realismo extremo.</p>
+                <button class="copy-btn" onclick="copyPrompt('autogrok')">Copiar Prompts Vídeo</button>
             </div>
         </div>
     </div>
 
-    <footer>&copy; 2026 BioCronos | Dr. Jose Spadeto</footer>
+    <footer>
+        &copy; 2026 BioCronos | Dr. Jose Spadeto
+    </footer>
 
     <script>
         function copyPrompt(type) {
-            const val = document.getElementById('mainInput').value || "conteúdo";
+            const val = document.getElementById('userInput').value || "seu tema de evolução";
             let p = "";
+            
             if(type === 'portal') p = `Atue como mentor multidimensional. Com base em '${val}', traga códigos de ativação evolutiva e chaves de sabedoria para expandir a consciência do observador consciente.`;
             if(type === 'master') p = `Diretor Criativo: Gere um roteiro master (10 min) para '${val}'. Integre Ciência, Filosofia e Ativação. Inclua notas de áudio (432Hz) e descrições visuais 8K.`;
             if(type === 'visual') p = `Gere prompt de Thumbnail e 10 prompts de vídeo para '${val}'. Estética: Realismo Sci-Fi, paleta Ultravioleta/Ouro, iluminação Rim Light.`;
             if(type === 'autogrok') p = `Gere lista sequencial de 15 prompts cinematográficos para '${val}'. Use termos técnicos: Dolly Zoom, Photorealistic, Cinematic Lighting.`;
             
             navigator.clipboard.writeText(p);
-            alert("Comando Copiado!");
+            alert("Comando Copiado com Sucesso!");
         }
     </script>
 </body>
